@@ -11,15 +11,11 @@ const App = () => {
 
     const reducer = (state, action) => {
         switch (action.type) {
-            case "changeActivity":
+            case "changeCat":
                 return {
                     ...state,
-                    activity: action.activity
-                };
-            case "changeName":
-                return {
-                    ...state,
-                    name: action.newName
+                    name: action.newName,
+                    activity: action.newActivity
                 };
             default:
                 return state;

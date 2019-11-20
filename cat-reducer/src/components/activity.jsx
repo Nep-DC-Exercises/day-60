@@ -1,23 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import StateContext from "../context";
 
 const Activity = () => {
     const [value, dispatch] = useContext(StateContext);
+    const [name, setName] = useState();
+    const [activity, setActivity] = useState();
 
-    const handleClick = e => {
-        e.preventDefault();
-        dispatch({
-            type: "changeActivity",
-            activity: e.target.value
-        });
+    const handleChangeName = e => {
+        setName(e.target.value);
     };
 
-    const handleChange = e => {
+    const handleChangeActivity = e => {
+        setActivity(e.target.value);
+    };
+
+    const handleSubmit = e => {
+        e.persist();
+        e.preventDefault();
         dispatch({
-            type: "changeName",
-            newName: e.target.value
-        })
-    }
+            type: "changeCat",
+            newName: name,
+            newActivity: activity
+        });
+    };
 
     return (
         <div>
@@ -25,21 +30,27 @@ const Activity = () => {
             <p>
                 {value.name} is {value.activity}
             </p>
-            <p>
-                <input type="text" name="newName" placeholder="Cat Name" onChange={handleChange}/>
-            </p>
-            <ul>
-                <li>
-                    <button onClick={handleClick} value="eating">
-                        Eating
-                    </button>
-                </li>
-                <li>
-                    <button onClick={handleClick} value="playing">
-                        Playing
-                    </button>
-                </li>
-            </ul>
+            <form onSubmit={e => handleSubmit(e)}>
+                <label>
+                    Name:
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Change the name!"
+                        onChange={e => handleChangeName(e)}
+                    />
+                </label>
+                <label>
+                    Activity:
+                    <input
+                        type="text"
+                        name="activity"
+                        placeholder="Change the activity!"
+                        onChange={e => handleChangeActivity(e)}
+                    />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
         </div>
     );
 };

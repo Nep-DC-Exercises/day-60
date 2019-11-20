@@ -5,7 +5,6 @@ import { StateProvider } from "./context";
 
 const App = () => {
     const initialState = {
-        name: "Guster",
         activity: "purring"
     };
 
@@ -16,16 +15,11 @@ const App = () => {
                     ...state,
                     activity: action.activity
                 };
-            case "changeName":
-                return {
-                    ...state,
-                    name: action.newName
-                };
             default:
                 return state;
         }
     };
-    
+
     return (
         <div className="App">
             <StateProvider value={useReducer(reducer, initialState)}>

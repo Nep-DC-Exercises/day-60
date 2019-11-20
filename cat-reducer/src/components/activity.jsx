@@ -12,23 +12,18 @@ const Activity = () => {
         });
     };
 
-    const handleChange = e => {
-        dispatch({
-            type: "changeName",
-            newName: e.target.value
-        })
-    }
-
     return (
         <div>
             <h1>The Cat's Activity</h1>
             <p>
-                {value.name} is {value.activity}
-            </p>
-            <p>
-                <input type="text" name="newName" placeholder="Cat Name" onChange={handleChange}/>
+                The cat is {value.activity}
             </p>
             <ul>
+                <li>
+                    <button onClick={handleClick} value="napping">
+                        Napping
+                    </button>
+                </li>
                 <li>
                     <button onClick={handleClick} value="eating">
                         Eating

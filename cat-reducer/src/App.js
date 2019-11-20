@@ -27,11 +27,22 @@ const App = () => {
                     cats: {
                         ...state.cats,
                         [randomId]: {
-                            name: action.name,
-                            activity: action.activity
+                            name: action.newName,
+                            activity: action.newActivity
                         }
                     }
                 };
+            case "updateCat":
+              return {
+                ...state,
+                cats: {
+                  ...state.cats,
+                  [action.id]: {
+                    name: action.newName,
+                    activity: action.newActivity
+                  }
+                }
+              }
             default:
                 return state;
         }

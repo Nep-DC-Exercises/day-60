@@ -27,9 +27,15 @@ const Activity = () => {
     return (
         <div>
             <h1>The Cat's Activity</h1>
-            <p>
-                {value.name} is {value.activity}
-            </p>
+            <ul>
+                {Object.keys(value.cats).map(cat => {
+                    return (
+                        <li>
+                            {value.cats[cat].name} is {value.cats[cat].activity}
+                        </li>
+                    );
+                })}
+            </ul>
             <form onSubmit={e => handleSubmit(e)}>
                 <label>
                     Name:
